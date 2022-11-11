@@ -6,7 +6,9 @@ let mouseIn = false;
 for (let depth1 of depth1_list) {
   depth1.addEventListener("mouseenter", () => {
     mouseIn = true;
+    clearActive(depth1_list);
     clearActive(depth2_list);
+    depth1.classList.add("active");
     depth2.classList.add("active");
     if (depth1.classList.contains("main1"))
       document.querySelector(".sub1").classList.add("active");
@@ -24,6 +26,11 @@ for (let depth1 of depth1_list) {
       document.querySelector(".sub7").classList.add("active");
     else document.querySelector(".sub8").classList.add("active");
   });
+
+  depth1.addEventListener("mouseleave", () => {
+    mouseIn = false;
+    clearActive(depth1_list);
+  });
 }
 
 depth2.addEventListener("mouseenter", () => {
@@ -34,6 +41,13 @@ depth2.addEventListener("mouseleave", () => {
   mouseIn = false;
   depth2.classList.remove("active");
 });
+
+setInterval(() => {
+  if (!mouseIn) {
+    clearActive(depth2_list);
+    depth2.classList.remove("active");
+  }
+}, 700);
 
 function clearActive(elements) {
   for (let element of elements) {

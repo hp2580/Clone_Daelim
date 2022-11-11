@@ -43,6 +43,10 @@ header nav a:hover {
   color: var(--blue);
 }
 
+header nav a.active {
+  color: var(--blue);
+}
+
 header nav a:after {
   content: "";
   position: absolute;
@@ -56,6 +60,10 @@ header nav a:after {
 }
 
 header nav a:hover:after {
+  opacity: 1;
+}
+
+header nav a.active:after {
   opacity: 1;
 }
 
