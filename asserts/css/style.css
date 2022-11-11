@@ -20,6 +20,7 @@ header nav {
   justify-content: center;
   gap: 0 30px;
   height: 88px;
+  padding-right: 100px;
   font-weight: 600;
   font-size: 0.875em;
   z-index: 10;
@@ -67,15 +68,24 @@ header .depth2 {
   background: url(../images/header/submenu_bg.png) no-repeat;
   background-position: bottom right;
   border-radius: 0 0 20px 20px;
-  transition: all 0.3s linear;
+  transition: height 0.2s linear;
 }
 
 header .depth2.active {
   height: 400px;
+  border-top: 2px solid #eee;
 }
 
 header .sub {
   display: none;
+  height: 100%;
+  padding-top: 50px;
+}
+
+header .depth2.active .sub.active {
+  display: flex;
+  justify-content: center;
+  gap: 0 100px;
 }
 
 header .container {
@@ -84,6 +94,38 @@ header .container {
   align-items: center;
   padding: 10px 0;
   position: relative;
+}
+
+header .sub dl {
+  position: relative;
+}
+
+header .sub dl:not(:last-child):after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  right: -50px;
+  width: 2px;
+  height: 30px;
+  background: #eee;
+}
+
+header .sub dl * {
+  cursor: pointer;
+}
+
+header .sub dl *:hover {
+  color: var(--blue);
+}
+
+header .sub dt {
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+
+header .sub dd {
+  font-size: 0.875em;
+  padding: 3px 0;
 }
 
 header .container * {
