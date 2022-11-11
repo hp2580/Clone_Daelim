@@ -24,3 +24,12 @@ button {
   background: #fff;
   cursor: pointer;
 }
+
+input {
+  border: 0;
+  outline: 0;
+}
+
+.hidden {
+  overflow: hidden;
+}

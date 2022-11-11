@@ -1,7 +1,16 @@
 let depth1_list = document.querySelectorAll(".depth1 a");
 let depth2 = document.querySelector(".depth2");
 let depth2_list = document.querySelectorAll(".depth2 .sub");
+let products = document.querySelectorAll(".product li");
 let mouseIn = false;
+
+window.onload = () => {
+  addActive(products);
+};
+
+document.querySelector(".goTop").addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
 
 for (let depth1 of depth1_list) {
   depth1.addEventListener("mouseenter", () => {
@@ -29,7 +38,6 @@ for (let depth1 of depth1_list) {
 
   depth1.addEventListener("mouseleave", () => {
     mouseIn = false;
-    clearActive(depth1_list);
   });
 }
 
@@ -39,7 +47,18 @@ depth2.addEventListener("mouseenter", () => {
 
 depth2.addEventListener("mouseleave", () => {
   mouseIn = false;
+  clearActive(depth1_list);
   depth2.classList.remove("active");
+});
+
+document.querySelector(".btn_sub").addEventListener("click", () => {
+  document.querySelector(".side_menu").classList.add("active");
+  document.body.classList.add("hidden");
+});
+
+document.querySelector(".btn_close").addEventListener("click", () => {
+  document.querySelector(".side_menu").classList.remove("active");
+  document.body.classList.remove("hidden");
 });
 
 setInterval(() => {
