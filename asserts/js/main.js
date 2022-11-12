@@ -8,6 +8,13 @@ window.onload = () => {
   addActive(products);
 };
 
+window.onresize = () => {
+  if (window.innerWidth > 768) {
+    product.style.transform = `translateX(0)`;
+    currentX = 0;
+  }
+};
+
 document.querySelector(".goTop").addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });

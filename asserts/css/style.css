@@ -5,6 +5,46 @@ body {
   height: 10000px;
 }
 
+/*Side_Navigation*/
+.navigation {
+  position: fixed;
+  top: 40%;
+  right: 30px;
+  border-radius: 20px;
+}
+
+.navigation li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 55px;
+  aspect-ratio: 1;
+  background: #222;
+  transition: 0.3s;
+}
+
+.navigation li:first-child {
+  border-radius: 5px 5px 0 0;
+  background: #333;
+}
+
+.navigation li:nth-child(2) {
+  border-bottom: 1px solid #555;
+}
+
+.navigation li:last-child {
+  border-radius: 0 0 5px 5px;
+  background: var(--blue);
+}
+
+.navigation li:hover {
+  background: var(--blue);
+}
+
+.navigation_m {
+  display: none;
+}
+
 /*Btn_goTop*/
 .goTop {
   position: fixed;
@@ -207,6 +247,12 @@ body {
 
 .search_wrap .category .product li.active {
   display: block;
+}
+
+.search_wrap .category .product * {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
 }
 
 .search_wrap .category .product img {
@@ -572,6 +618,90 @@ header .logo img:nth-child(2) {
 }
 
 @media screen and (max-width: 768px) {
+  /*Side_Navigation*/
+  .navigation {
+    display: none;
+  }
+
+  .navigation_m {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #333;
+  }
+
+  .navigation_m li {
+    flex: 1;
+  }
+
+  .navigation_m a {
+    display: block;
+    height: 100%;
+    padding: 5px 0;
+    color: #fff;
+    font-size: 0.6em;
+    letter-spacing: -0.7px;
+    text-align: center;
+  }
+
+  .navigation_m img {
+    width: 20px;
+  }
+
+  /*Search*/
+  .search {
+    position: fixed;
+    top: auto;
+    width: 65px;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .search.hide {
+    left: 50%;
+    opacity: 1;
+  }
+
+  /*Search_wrap*/
+  .search_wrap {
+    top: auto;
+    bottom: -1000px;
+    left: 0;
+    width: 100%;
+    height: 80%;
+    padding: 20px 25px;
+    box-shadow: 0 0 20px #ccc;
+    border-radius: 20px 20px 0 0;
+    overflow: hidden;
+  }
+
+  .search_wrap.active {
+    bottom: 0;
+    opacity: 1;
+  }
+
+  .search_wrap section {
+    margin-bottom: 20px;
+  }
+
+  .search_wrap .category .name {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px 5px;
+  }
+
+  .search_wrap .category .name a {
+    padding: 10px 5px;
+    font-size: 0.6em;
+  }
+
+  .search_wrap .category .product {
+    grid-template-columns: repeat(36, 100px);
+    gap: 10px;
+  }
+
   /*Side_Menu*/
   .side_menu {
     height: auto;
