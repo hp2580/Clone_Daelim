@@ -678,6 +678,8 @@ header .logo img:nth-child(2) {
   opacity: 0;
   transform: translateY(200px);
   transition: 1s linear;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .sec1_wrap .sec1.active .text_wrap {
