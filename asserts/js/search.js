@@ -1,8 +1,10 @@
 let search = document.querySelector(".search");
 let searchWrap = document.querySelector(".search_wrap");
+let canMove = true;
 search.addEventListener("click", () => {
   search.classList.add("hide");
   searchWrap.classList.add("active");
+  canMove = true;
 });
 
 let closeSearch = document.querySelector(".close_search");
@@ -13,10 +15,10 @@ closeSearch.addEventListener("click", () => {
 });
 
 let titles = document.querySelectorAll(".name a");
-
 for (let title of titles) {
   title.addEventListener("click", (e) => {
     e.preventDefault();
+    canMove = false;
     product.style.transform = `translateX(0)`;
     let productClass = title.classList[0];
     switch (productClass) {
@@ -71,11 +73,13 @@ product.addEventListener("mousedown", (e) => {
 
 product.addEventListener("mouseup", (e) => {
   if (window.innerWidth <= 768) {
-    nextPoint = e.screenX;
-    moveX = nextPoint - prevPoint;
-    currentX += moveX;
-    if (currentX > 0) currentX = 0;
-    else if (currentX < -3660) currentX = -3660;
-    product.style.transform = `translateX(${currentX}px)`;
+    if (canMove) {
+      nextPoint = e.screenX;
+      moveX = nextPoint - prevPoint;
+      currentX += moveX;
+      if (currentX > 0) currentX = 0;
+      else if (currentX < -3660) currentX = -3660;
+      product.style.transform = `translateX(${currentX}px)`;
+    }
   }
 });
