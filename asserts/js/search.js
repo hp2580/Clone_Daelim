@@ -79,9 +79,3 @@ product.addEventListener("mouseup", (e) => {
     product.style.transform = `translateX(${currentX}px)`;
   }
 });
-
-function addActive(elements) {
-  for (let element of elements) {
-    element.classList.add("active");
-  }
-}

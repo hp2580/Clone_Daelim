@@ -11,6 +11,7 @@ body {
   top: 40%;
   right: 30px;
   border-radius: 20px;
+  z-index: 100;
 }
 
 .navigation li {
@@ -43,6 +44,7 @@ body {
 
 .navigation_m {
   display: none;
+  z-index: 100;
 }
 
 /*Btn_goTop*/
@@ -55,6 +57,7 @@ body {
   border-radius: 50%;
   background: #333;
   transform: rotate(45deg);
+  z-index: 100;
 }
 
 .goTop .wrap {
@@ -387,6 +390,8 @@ header {
   position: sticky;
   top: 0;
   left: 0;
+  z-index: 100;
+  background: #fff;
 }
 
 header nav {
@@ -452,7 +457,7 @@ header .depth2 {
   left: 0;
   width: 100%;
   height: 0;
-  background: url(../images/header/submenu_bg.png) no-repeat;
+  background: #fff url(../images/header/submenu_bg.png) no-repeat;
   background-position: bottom right;
   border-radius: 0 0 20px 20px;
   transition: height 0.2s linear;
@@ -588,6 +593,136 @@ header .logo img:nth-child(2) {
   top: 100%;
 }
 
+/*Section1*/
+.section1 {
+  height: 600px;
+  position: relative;
+  overflow: hidden;
+}
+
+.section1 .pagination {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  width: 100%;
+  padding: 0 20px;
+  text-align: left;
+  font-size: 0.8em;
+  z-index: 1;
+}
+
+.section1 .pagination ul {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 0 10px;
+  color: #ccc;
+}
+
+.section1 .pagination li {
+  flex: 1;
+  position: relative;
+  cursor: pointer;
+}
+
+.section1 .pagination li.active {
+  color: #fff;
+}
+
+.section1 .pagination li:before,
+.section1 .pagination li:after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 0;
+  height: 2px;
+}
+
+.section1 .pagination li:before {
+  width: 100%;
+  background: #ccc;
+}
+
+.section1 .pagination li:after {
+  width: 0;
+  background: var(--blue);
+}
+
+.section1 .pagination li.active:after {
+  width: 100%;
+  transition: 1.3s linear;
+}
+
+.section1 .pagination span {
+  display: block;
+}
+
+.sec1_wrap {
+  display: flex;
+  width: 500%;
+  height: 100%;
+  transition: 0.7s ease-out;
+}
+
+.sec1_wrap .sec1 {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  padding: 0 20px;
+}
+
+.sec1 .text_wrap {
+  opacity: 0;
+  transform: translateY(200px);
+  transition: 1s linear;
+}
+
+.sec1_wrap .sec1.active .text_wrap {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sec1_wrap .text_wrap span {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 1.2em;
+}
+
+.sec1_wrap .text_wrap h2 {
+  margin-bottom: 30px;
+  font-size: 2em;
+  letter-spacing: -2.5px;
+}
+
+.sec1_wrap .text_wrap p {
+  font-size: 0.9em;
+  font-weight: 300;
+}
+
+.sec1_1 {
+  background: url(../images/section1/sec1_1.jpg) no-repeat center / cover;
+}
+
+.sec1_2 {
+  background: url(../images/section1/sec1_2.png) no-repeat center / cover;
+}
+
+.sec1_3 {
+  background: url(../images/section1/sec1_3.jpg) no-repeat center / cover;
+}
+
+.sec1_4 {
+  background: url(../images/section1/sec1_4.jpg) no-repeat center / cover;
+}
+
+.sec1_5 {
+  background: url(../images/section1/sec1_5.jpg) no-repeat center / cover;
+}
+
 @media screen and (max-width: 1280px) {
   header nav {
     display: none;
@@ -614,6 +749,35 @@ header .logo img:nth-child(2) {
 
   .btn_wrap {
     top: 17px;
+  }
+
+  /*Section1*/
+  .section1 .pagination {
+    width: 60%;
+    font-size: 0.7em;
+  }
+
+  .section1 .pagination ul {
+    justify-content: flex-start;
+  }
+
+  .section1 .pagination li {
+    flex: unset;
+    width: 30px;
+    min-width: 20px;
+  }
+
+  .section1 .pagination li.active {
+    width: auto;
+    min-width: 100px;
+  }
+
+  .section1 .pagination p {
+    display: none;
+  }
+
+  .section1 .pagination li.active p {
+    display: block;
   }
 }
 

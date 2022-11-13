@@ -6,6 +6,8 @@ let mouseIn = false;
 
 window.onload = () => {
   addActive(products);
+  document.querySelector(".sec1_1").classList.add("active");
+  document.querySelector(".sec1_p1").classList.add("active");
 };
 
 window.onresize = () => {
@@ -16,7 +18,7 @@ window.onresize = () => {
 };
 
 document.querySelector(".goTop").addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 });
 
 for (let depth1 of depth1_list) {
@@ -74,6 +76,12 @@ setInterval(() => {
     depth2.classList.remove("active");
   }
 }, 700);
+
+function addActive(elements) {
+  for (let element of elements) {
+    element.classList.add("active");
+  }
+}
 
 function clearActive(elements) {
   for (let element of elements) {
