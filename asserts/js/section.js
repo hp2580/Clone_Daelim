@@ -60,14 +60,33 @@ function sec1(index) {
 /*Section2*/
 let sec2_slide = document.querySelector(".sec2_wrap ul");
 let sec2_lists = document.querySelectorAll(".sec2_wrap li");
+let sec2_links = document.querySelectorAll(".sec2_wrap a");
 let sec2_buttons = document.querySelectorAll(".sec2_wrap button");
+let sec2_prevPoint;
+let sec2_nextPoint;
+let sec2_mouseDown = false;
 let index = 0;
 let cnt = 0;
+
+sec2_slide.addEventListener("touchstart", ({ touches }) => {
+  sec2_Down(touches[0].screenX);
+});
+
+sec2_slide.addEventListener("touchend", ({ changedTouches }) => {
+  sec2_Up(changedTouches[0].screenX);
+});
+
+sec2_slide.addEventListener("mousedown", ({ screenX }) => {
+  sec2_Down(screenX);
+});
+
+sec2_slide.addEventListener("mouseup", ({ screenX }) => {
+  sec2_Up(screenX);
+});
 
 for (let button of sec2_buttons) {
   button.addEventListener("click", () => {
     cnt = 0;
-    console.log(cnt);
     checkActive(sec2_lists);
     if (button.classList.contains("sec2_prev")) {
       index = index > 0 ? index - 1 : 3;
@@ -79,13 +98,43 @@ for (let button of sec2_buttons) {
 }
 
 function sec2_cnt() {
-  console.log(cnt);
-  if (cnt < 6) cnt++;
-  else {
-    cnt = 0;
-    index = index < 3 ? index + 1 : 0;
-    act_sec2_slide();
+  if (!sec2_mouseDown) {
+    if (cnt < 6) cnt++;
+    else {
+      cnt = 0;
+      index = index < 3 ? index + 1 : 0;
+      act_sec2_slide();
+    }
   }
+}
+
+/**
+ *
+ * @param {*} prev 터치 시작점 & 클릭 시작점
+ */
+function sec2_Down(prev) {
+  for (let link of sec2_links) {
+    link.classList.add("down");
+  }
+  sec2_mouseDown = true;
+  cnt = 0;
+  sec2_prevPoint = prev;
+}
+
+/**
+ *
+ * @param {*} next 터치 종료점 / 클릭 종료점
+ */
+function sec2_Up(next) {
+  for (let link of sec2_links) {
+    link.classList.remove("down");
+  }
+  sec2_mouseDown = false;
+  sec2_nextPoint = next;
+  let sec2_direction = sec2_nextPoint - sec2_prevPoint;
+  if (sec2_direction > 10) index = index > 0 ? index - 1 : 3;
+  else if (sec2_direction < -10) index = index < 3 ? index + 1 : 0;
+  act_sec2_slide();
 }
 
 function act_sec2_slide() {
