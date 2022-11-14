@@ -11,6 +11,8 @@ window.onload = () => {
   document.querySelector(".sec1_1").classList.add("active");
   document.querySelector(".sec1_p1").classList.add("active");
   document.querySelector(".sec2_1").classList.add("active");
+  document.querySelector(".sec3_1").classList.add("active");
+  document.querySelector(".sec3_p1").classList.add("active");
   if (window.innerWidth <= 768) {
     interval = setInterval(sec2_cnt, 500);
     isIntervalPlay = true;
@@ -19,7 +21,15 @@ window.onload = () => {
 
 window.onresize = () => {
   act_sec2_slide();
-  if (window.innerWidth > 768) {
+  if (window.innerWidth <= 990) {
+    clearActive(sec3_navs);
+    clearActive(sec3_lists);
+    sec3_navs[0].classList.add("active");
+    sec3_lists[0].classList.add("active");
+    document.querySelector(
+      ".sec3_wrap"
+    ).style.backgroundImage = `url(asserts/images/section3/sec3_bg1.png)`;
+  } else if (window.innerWidth > 768) {
     product.style.transform = `translateX(0)`;
     currentX = 0;
     isIntervalPlay = false;
@@ -40,6 +50,11 @@ window.onscroll = (e) => {
   for (let sec2_element of sec2_elements) {
     if (sec2_element.getBoundingClientRect().top < window.innerHeight * 0.9)
       sec2_element.classList.add("scroll");
+  }
+  let sec3_elements = document.querySelectorAll(".section3 > *");
+  for (let sec3_element of sec3_elements) {
+    if (sec3_element.getBoundingClientRect().top < window.innerHeight * 0.9)
+      sec3_element.classList.add("scroll");
   }
 };
 

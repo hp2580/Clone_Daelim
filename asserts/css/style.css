@@ -836,10 +836,6 @@ header .logo img:nth-child(2) {
   width: 100%;
   height: 100%;
   text-align: left;
-  pointer-events: all;
-}
-
-.sec2_wrap a.down {
   pointer-events: none;
 }
 
@@ -915,6 +911,224 @@ header .logo img:nth-child(2) {
   opacity: 1;
 }
 
+/*Section3*/
+.section3 {
+  text-align: center;
+}
+
+.section3 > * {
+  opacity: 0;
+  transform: translateY(300px);
+  transition: 0.5s;
+}
+
+.section3 > *.scroll {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section3 .sec_title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0 15px;
+  color: #ddd;
+  font-size: 0.9em;
+}
+
+.section3 .sec_title span {
+  display: inline-block;
+  width: 150px;
+  height: 21px;
+  position: relative;
+}
+
+.section3 .sec_title span:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #ddd;
+}
+
+.section3 h2 {
+  font-size: 2.5em;
+  font-weight: 400;
+  margin: 10px 0 20px;
+}
+
+.sec3_wrap {
+  width: 100%;
+  height: 600px;
+  background-image: url(../images/section3/sec3_bg1.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  position: relative;
+}
+
+.sec3_wrap ul {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.sec3_wrap li {
+  display: none;
+}
+
+.sec3_wrap li.active {
+  display: block;
+}
+
+.sec3_wrap li h3 {
+  font-size: 2.5em;
+  font-weight: 400;
+  margin: 20px 0 10px;
+}
+
+.sec3_wrap li p {
+  font-size: 0.8em;
+}
+
+.sec3_wrap .sec3_nav {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  bottom: 100px;
+}
+
+.sec3_nav > div {
+  flex: 1;
+  height: 200px;
+  position: relative;
+}
+
+.sec3_nav > div:before {
+  content: "";
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #aaa;
+  transition: 0.4s linear;
+  transition-delay: 1s;
+}
+
+.sec3_nav > div:nth-child(2):before {
+  transition-delay: 1.4s;
+}
+
+.sec3_nav > div:nth-child(3):before {
+  transition-delay: 1.8s;
+}
+
+.sec3_nav > div:nth-child(4):before {
+  transition-delay: 2.2s;
+}
+
+.sec3_nav > div:nth-child(5):before {
+  transition-delay: 2.6s;
+}
+
+.sec3_nav > div:nth-child(6):before {
+  transition-delay: 3s;
+}
+
+.sec3_wrap.scroll .sec3_nav > div:before {
+  width: 100%;
+}
+
+.sec3_nav button {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 85%;
+  height: 100%;
+  background: transparent;
+  color: #fff;
+  font-size: 0.8em;
+  font-weight: 600;
+  letter-spacing: -2px;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: 0.4s linear;
+  transition-delay: 1s;
+}
+
+.sec3_wrap.scroll .sec3_p2 button {
+  transition-delay: 1.4s;
+}
+
+.sec3_wrap.scroll .sec3_p3 button {
+  transition-delay: 1.8s;
+}
+
+.sec3_wrap.scroll .sec3_p4 button {
+  transition-delay: 2.2s;
+}
+
+.sec3_wrap.scroll .sec3_p5 button {
+  transition-delay: 2.6s;
+}
+
+.sec3_wrap.scroll .sec3_p6 button {
+  transition-delay: 3s;
+}
+
+.sec3_wrap.scroll .sec3_nav button {
+  opacity: 1;
+}
+
+.sec3_nav .nav_wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.sec3_nav > div.active .nav_wrap {
+  background: var(--blue);
+}
+
+.sec3_nav .nav_wrap:before {
+  content: "";
+  position: absolute;
+  bottom: 46px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background: #aaa;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  transition: 0.3s;
+}
+
+.sec3_nav > div.active .nav_wrap:before {
+  background: #fff;
+}
+
+.sec3_nav .nav_wrap img {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.sec3_nav .nav_wrap p {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  width: 100%;
+  transform: translateX(-50%);
+}
+
 @media screen and (max-width: 1280px) {
   header nav {
     display: none;
@@ -978,11 +1192,15 @@ header .logo img:nth-child(2) {
   }
 
   .section2 .sec_title {
-    font-size: 0.8em;
+    font-size: 0.7em;
   }
 
   .section2 .sec_title span {
     width: 120px;
+  }
+
+  .section2 h2 {
+    font-size: 2em;
   }
 
   .sec2_wrap {
@@ -1013,6 +1231,115 @@ header .logo img:nth-child(2) {
 
   .sec2_wrap li:hover .front h4 {
     opacity: 1;
+  }
+
+  /*Section3*/
+  .section3 .sec_title {
+    font-size: 0.7em;
+  }
+
+  .section3 .sec_title span {
+    width: 120px;
+  }
+
+  .section3 h2 {
+    font-size: 2em;
+  }
+
+  .sec3_wrap {
+    width: 70%;
+    height: 400px;
+    margin: 100px auto 0;
+    border-radius: 20px;
+  }
+
+  .sec3_wrap ul {
+    top: auto;
+    bottom: -80px;
+    color: #000;
+    transform: translateX(-50%);
+  }
+
+  .sec3_wrap li p:nth-child(1) {
+    display: none;
+  }
+
+  .sec3_wrap li h3 {
+    font-size: 1em;
+    font-weight: 400;
+    margin: 10px 0;
+  }
+
+  .sec3_wrap li p {
+    font-size: 0.6em;
+    color: #666;
+  }
+
+  .sec3_wrap .sec3_nav {
+    display: grid;
+    grid-template-columns: repeat(6, max-content);
+    gap: 5px;
+    width: auto;
+    bottom: auto;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .sec3_nav > div {
+    height: 30px;
+    position: relative;
+  }
+
+  .sec3_nav > div:before {
+    transition-delay: 0s !important;
+  }
+
+  .sec3_wrap.scroll .sec3_nav > div:before {
+    width: 0;
+  }
+
+  .sec3_nav button {
+    position: static;
+    transform: translateX(0);
+    width: max-content;
+    min-width: 12%;
+    background: #fff;
+    color: #000;
+    font-size: 0.5em;
+    font-weight: 400;
+    letter-spacing: -1px;
+    opacity: 1;
+    transition-delay: 0s !important;
+  }
+
+  .sec3_nav .nav_wrap {
+    border: 1px solid #aaa;
+  }
+
+  .sec3_nav > div.active .nav_wrap {
+    background: #222;
+    border: 1px solid #222;
+    color: #fff;
+  }
+
+  .sec3_nav .nav_wrap:before {
+    width: 0;
+  }
+
+  .sec3_nav .nav_wrap img {
+    display: none;
+  }
+
+  .sec3_nav .nav_wrap p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: static;
+    width: 100%;
+    height: 100%;
+    padding: 0 5px;
+    transform: translateX(0);
   }
 }
 

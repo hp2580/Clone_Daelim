@@ -113,9 +113,6 @@ function sec2_cnt() {
  * @param {*} prev 터치 시작점 & 클릭 시작점
  */
 function sec2_Down(prev) {
-  for (let link of sec2_links) {
-    link.classList.add("down");
-  }
   sec2_mouseDown = true;
   cnt = 0;
   sec2_prevPoint = prev;
@@ -126,9 +123,6 @@ function sec2_Down(prev) {
  * @param {*} next 터치 종료점 / 클릭 종료점
  */
 function sec2_Up(next) {
-  for (let link of sec2_links) {
-    link.classList.remove("down");
-  }
   sec2_mouseDown = false;
   sec2_nextPoint = next;
   let sec2_direction = sec2_nextPoint - sec2_prevPoint;
@@ -145,6 +139,61 @@ function act_sec2_slide() {
   else if (window.innerWidth <= 768)
     sec2_slide.style.transform = `translateX(${-(index * 25 - 12.5)}%)`;
   else sec2_slide.style.transform = `translateX(0)`;
+}
+
+/*Section3*/
+let sec3_lists = document.querySelectorAll(".sec3_wrap li");
+let sec3_navs = document.querySelectorAll(".sec3_nav > div");
+for (let index = 0; index < sec3_navs.length; index++) {
+  sec3_navs[index].addEventListener("mouseenter", () => {
+    if (window.innerWidth > 990) {
+      act_sec3(index);
+    }
+  });
+  sec3_navs[index].addEventListener("click", () => {
+    if (window.innerWidth <= 990) {
+      act_sec3(index);
+    }
+  });
+}
+
+function act_sec3(index) {
+  clearActive(sec3_navs);
+  clearActive(sec3_lists);
+  sec3_navs[index].classList.add("active");
+  sec3_lists[index].classList.add("active");
+  switch (index) {
+    case 0:
+      document.querySelector(
+        ".sec3_wrap"
+      ).style.backgroundImage = `url(asserts/images/section3/sec3_bg1.png)`;
+      break;
+    case 1:
+      document.querySelector(
+        ".sec3_wrap"
+      ).style.backgroundImage = `url(asserts/images/section3/sec3_bg2.png)`;
+      break;
+    case 2:
+      document.querySelector(
+        ".sec3_wrap"
+      ).style.backgroundImage = `url(asserts/images/section3/sec3_bg3.png)`;
+      break;
+    case 3:
+      document.querySelector(
+        ".sec3_wrap"
+      ).style.backgroundImage = `url(asserts/images/section3/sec3_bg4.png)`;
+      break;
+    case 4:
+      document.querySelector(
+        ".sec3_wrap"
+      ).style.backgroundImage = `url(asserts/images/section3/sec3_bg5.png)`;
+      break;
+    default:
+      document.querySelector(
+        ".sec3_wrap"
+      ).style.backgroundImage = `url(asserts/images/section3/sec3_bg6.png)`;
+      break;
+  }
 }
 
 /**
