@@ -3,17 +3,35 @@ let depth2 = document.querySelector(".depth2");
 let depth2_list = document.querySelectorAll(".depth2 .sub");
 let products = document.querySelectorAll(".product li");
 let mouseIn = false;
+let interval;
+let isIntervalPlay = false;
 
 window.onload = () => {
   addActive(products);
   document.querySelector(".sec1_1").classList.add("active");
   document.querySelector(".sec1_p1").classList.add("active");
+  document.querySelector(".sec2_1").classList.add("active");
+  if (window.innerWidth <= 768) {
+    interval = setInterval(sec2_cnt, 500);
+    isIntervalPlay = true;
+  }
 };
 
 window.onresize = () => {
+  act_sec2_slide();
   if (window.innerWidth > 768) {
     product.style.transform = `translateX(0)`;
     currentX = 0;
+    isIntervalPlay = false;
+    cnt = 0;
+    index = 0;
+    clearInterval(interval);
+    sec2_slide.style.transform = `translateX(0)`;
+  } else if (window.innerWidth <= 768) {
+    if (!isIntervalPlay) {
+      isIntervalPlay = true;
+      interval = setInterval(sec2_cnt, 500);
+    }
   }
 };
 

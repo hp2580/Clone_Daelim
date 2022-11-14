@@ -12,32 +12,20 @@ for (let pagination of paginations) {
     switch (class_Pagination) {
       case "sec1_p1":
         sec1_index = 0;
-        // sec1_Pages[0].classList.add("active");
-        // sec1_wrap.style.transform = `translateX(0)`;
         break;
       case "sec1_p2":
         sec1_index = 1;
-        // sec1_Pages[1].classList.add("active");
-        // sec1_wrap.style.transform = `translateX(-20%)`;
         break;
       case "sec1_p3":
         sec1_index = 2;
-        // sec1_Pages[2].classList.add("active");
-        // sec1_wrap.style.transform = `translateX(-40%)`;
         break;
       case "sec1_p4":
         sec1_index = 3;
-        // sec1_Pages[3].classList.add("active");
-        // sec1_wrap.style.transform = `translateX(-60%)`;
         break;
       default:
         sec1_index = 4;
-        // sec1_Pages[4].classList.add("active");
-        // sec1_wrap.style.transform = `translateX(-80%)`;
         break;
     }
-    //   sec1_Pages[sec1_index].classList.add("active");
-    //   sec1_wrap.style.transform = `translateX(-${20 * sec1_index}%)`;
     sec1(sec1_index);
   });
 }
@@ -67,4 +55,58 @@ function sec1(index) {
   paginations[index].classList.add("active");
   sec1_Pages[index].classList.add("active");
   sec1_wrap.style.transform = `translateX(-${20 * index}%)`;
+}
+
+/*Section2*/
+let sec2_slide = document.querySelector(".sec2_wrap ul");
+let sec2_lists = document.querySelectorAll(".sec2_wrap li");
+let sec2_buttons = document.querySelectorAll(".sec2_wrap button");
+let index = 0;
+let cnt = 0;
+
+for (let button of sec2_buttons) {
+  button.addEventListener("click", () => {
+    cnt = 0;
+    console.log(cnt);
+    checkActive(sec2_lists);
+    if (button.classList.contains("sec2_prev")) {
+      index = index > 0 ? index - 1 : 3;
+    } else {
+      index = index < 3 ? index + 1 : 0;
+    }
+    act_sec2_slide();
+  });
+}
+
+function sec2_cnt() {
+  console.log(cnt);
+  if (cnt < 6) cnt++;
+  else {
+    cnt = 0;
+    index = index < 3 ? index + 1 : 0;
+    act_sec2_slide();
+  }
+}
+
+function act_sec2_slide() {
+  clearActive(sec2_lists);
+  sec2_lists[index].classList.add("active");
+  if (window.innerWidth <= 480)
+    sec2_slide.style.transform = `translateX(${-(index * 25)}%)`;
+  else if (window.innerWidth <= 768)
+    sec2_slide.style.transform = `translateX(${-(index * 25 - 12.5)}%)`;
+  else sec2_slide.style.transform = `translateX(0)`;
+}
+
+/**
+ *
+ * @param {*} elements 자식 요소들의 active index를 반환할 부모 요소
+ */
+function checkActive(elements) {
+  for (let indexList = 0; indexList < elements.length; indexList++) {
+    if (elements[indexList].classList.contains("active")) {
+      index = indexList;
+      break;
+    }
+  }
 }
