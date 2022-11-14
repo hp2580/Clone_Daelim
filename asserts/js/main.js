@@ -35,6 +35,14 @@ window.onresize = () => {
   }
 };
 
+window.onscroll = (e) => {
+  let sec2_elements = document.querySelectorAll(".section2 > *");
+  for (let sec2_element of sec2_elements) {
+    if (sec2_element.getBoundingClientRect().top < window.innerHeight * 0.9)
+      sec2_element.classList.add("scroll");
+  }
+};
+
 document.querySelector(".goTop").addEventListener("click", () => {
   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 });

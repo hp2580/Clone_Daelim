@@ -732,6 +732,17 @@ header .logo img:nth-child(2) {
   text-align: center;
 }
 
+.section2 > * {
+  opacity: 0;
+  transform: translateY(300px);
+  transition: 0.5s;
+}
+
+.section2 > *.scroll {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .section2 .sec_title {
   display: flex;
   align-items: center;
@@ -782,6 +793,7 @@ header .logo img:nth-child(2) {
 
 .sec2_wrap .sec2_prev,
 .sec2_wrap .sec2_next {
+  display: none;
   position: absolute;
   top: 50%;
   width: 13px;
@@ -1156,6 +1168,11 @@ header .logo img:nth-child(2) {
 
   .section2 h2 {
     font-size: 1.8em;
+  }
+
+  .sec2_wrap .sec2_prev,
+  .sec2_wrap .sec2_next {
+    display: block;
   }
 
   .sec2_wrap ul {
