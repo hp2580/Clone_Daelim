@@ -1167,7 +1167,7 @@ header .logo img:nth-child(2) {
   text-align: center;
 }
 
-/* .section4 > * {
+.section4 > * {
   opacity: 0;
   transform: translateY(300px);
   transition: 0.5s;
@@ -1176,7 +1176,7 @@ header .logo img:nth-child(2) {
 .section4 > *.scroll {
   opacity: 1;
   transform: translateY(0);
-} */
+}
 
 .section4 .sec_title {
   display: flex;
