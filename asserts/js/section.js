@@ -196,6 +196,41 @@ function act_sec3(index) {
   }
 }
 
+/*Setion5*/
+let sec5_navs = document.querySelectorAll(".sec5_nav a");
+for (let index = 0; index < sec5_navs.length; index++) {
+  sec5_navs[index].addEventListener("mouseenter", () => {
+    if (window.innerWidth > 990) {
+      act_sec5(index);
+    }
+  });
+}
+
+function act_sec5(index) {
+  switch (index) {
+    case 0:
+      document.querySelector(
+        ".sec5_wrap"
+      ).style.backgroundImage = `url(asserts/images/section5/sec5_bg1.png)`;
+      break;
+    case 1:
+      document.querySelector(
+        ".sec5_wrap"
+      ).style.backgroundImage = `url(asserts/images/section5/sec5_bg2.jpg)`;
+      break;
+    case 2:
+      document.querySelector(
+        ".sec5_wrap"
+      ).style.backgroundImage = `url(asserts/images/section5/sec5_bg3.jpg)`;
+      break;
+    default:
+      document.querySelector(
+        ".sec5_wrap"
+      ).style.backgroundImage = `url(asserts/images/section5/sec5_bg4.jpg)`;
+      break;
+  }
+}
+
 /**
  *
  * @param {*} elements 자식 요소들의 active index를 반환할 부모 요소
