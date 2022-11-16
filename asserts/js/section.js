@@ -231,6 +231,99 @@ function act_sec5(index) {
   }
 }
 
+let sec5_lists = document.querySelectorAll(".sec5_nav a");
+let sec5_pages = document.querySelectorAll(".sec5_pagination button");
+let sec5_slide = document.querySelector(".sec5_nav");
+let sec5_prevPoint;
+let sec5_nextPoint;
+let sec5_mouseDown = false;
+let index_sec5 = 0;
+let cnt_sec5 = 0;
+
+sec5_slide.addEventListener("touchstart", ({ touches }) => {
+  sec5_Down(touches[0].screenX);
+});
+
+sec5_slide.addEventListener("touchend", ({ changedTouches }) => {
+  sec5_Up(changedTouches[0].screenX);
+});
+
+sec5_slide.addEventListener("mousedown", ({ screenX }) => {
+  sec5_Down(screenX);
+});
+
+sec5_slide.addEventListener("mouseup", ({ screenX }) => {
+  sec5_Up(screenX);
+});
+
+for (let button of sec5_pages) {
+  button.addEventListener("click", () => {
+    let class_button = button.classList[0];
+    clearActive(sec5_pages);
+    button.classList.add("active");
+    switch (class_button) {
+      case "sec5_pg1":
+        index_sec5 = 0;
+        break;
+      case "sec5_pg2":
+        index_sec5 = 1;
+        break;
+      case "sec5_pg3":
+        index_sec5 = 2;
+        break;
+      default:
+        index_sec5 = 3;
+        break;
+    }
+    act_sec5_slide();
+  });
+}
+
+function act_sec5_slide() {
+  clearActive(sec5_lists);
+  sec5_lists[index_sec5].classList.add("active");
+  if (window.innerWidth <= 580)
+    sec5_slide.style.transform = `translateX(${-(index_sec5 * 25) + 5}%)`;
+  else if (window.innerWidth <= 990)
+    sec5_slide.style.transform = `translateX(${-(index_sec5 * 25)}%)`;
+  else sec5_slide.style.transform = `translateX(0)`;
+}
+
+function sec5_cnt() {
+  if (!sec5_mouseDown) {
+    if (cnt_sec5 < 6) cnt++;
+    else {
+      cnt = 0;
+      index_sec5 = index_sec5 < 3 ? index_sec5 + 1 : 0;
+      act_sec5_slide();
+    }
+  }
+}
+
+/**
+ *
+ * @param {*} prev 터치 시작점 & 클릭 시작점
+ */
+function sec5_Down(prev) {
+  sec5_mouseDown = true;
+  cnt_sec5 = 0;
+  sec5_prevPoint = prev;
+}
+
+/**
+ *
+ * @param {*} next 터치 종료점 / 클릭 종료점
+ */
+function sec5_Up(next) {
+  sec5_mouseDown = false;
+  sec5_nextPoint = next;
+  let sec5_direction = sec5_nextPoint - sec5_prevPoint;
+  if (sec5_direction > 10) index_sec5 = index_sec5 > 0 ? index_sec5 - 1 : 3;
+  else if (sec5_direction < -10)
+    index_sec5 = index_sec5 < 3 ? index_sec5 + 1 : 0;
+  act_sec5_slide();
+}
+
 /**
  *
  * @param {*} elements 자식 요소들의 active index를 반환할 부모 요소

@@ -21,6 +21,7 @@ window.onload = () => {
 
 window.onresize = () => {
   act_sec2_slide();
+  act_sec5_slide();
   if (window.innerWidth <= 990) {
     clearActive(sec3_navs);
     clearActive(sec3_lists);
