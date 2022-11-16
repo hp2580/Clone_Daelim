@@ -4,7 +4,9 @@ let depth2_list = document.querySelectorAll(".depth2 .sub");
 let products = document.querySelectorAll(".product li");
 let mouseIn = false;
 let interval;
+let interval_sec5;
 let isIntervalPlay = false;
+let isIntervalPlay_sec5 = false;
 
 window.onload = () => {
   addActive(products);
@@ -13,7 +15,11 @@ window.onload = () => {
   document.querySelector(".sec2_1").classList.add("active");
   document.querySelector(".sec3_1").classList.add("active");
   document.querySelector(".sec3_p1").classList.add("active");
-  if (window.innerWidth <= 768) {
+  document.querySelector(".sec5_pg1").classList.add("active");
+  if (window.innerWidth <= 990) {
+    interval = setInterval(sec5_cnt, 500);
+    isIntervalPlay_sec5 = true;
+  } else if (window.innerWidth <= 768) {
     interval = setInterval(sec2_cnt, 500);
     isIntervalPlay = true;
   }
@@ -22,7 +28,12 @@ window.onload = () => {
 window.onresize = () => {
   act_sec2_slide();
   act_sec5_slide();
-  if (window.innerWidth <= 990) {
+  if (window.innerWidth > 990) {
+    isIntervalPlay_sec5 = false;
+    cnt_sec5 = 0;
+    index_sec5 = 0;
+    clearInterval(interval_sec5);
+  } else if (window.innerWidth <= 990) {
     clearActive(sec3_navs);
     clearActive(sec3_lists);
     sec3_navs[0].classList.add("active");
@@ -30,6 +41,10 @@ window.onresize = () => {
     document.querySelector(
       ".sec3_wrap"
     ).style.backgroundImage = `url(asserts/images/section3/sec3_bg1.png)`;
+    if (!isIntervalPlay_sec5) {
+      isIntervalPlay_sec5 = true;
+      interval_sec5 = setInterval(sec5_cnt, 500);
+    }
   } else if (window.innerWidth > 768) {
     product.style.transform = `translateX(0)`;
     currentX = 0;

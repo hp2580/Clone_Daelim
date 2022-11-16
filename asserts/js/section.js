@@ -281,7 +281,6 @@ for (let button of sec5_pages) {
 
 function act_sec5_slide() {
   clearActive(sec5_lists);
-  sec5_lists[index_sec5].classList.add("active");
   if (window.innerWidth <= 580)
     sec5_slide.style.transform = `translateX(${-(index_sec5 * 25) + 5}%)`;
   else if (window.innerWidth <= 990)
@@ -291,11 +290,13 @@ function act_sec5_slide() {
 
 function sec5_cnt() {
   if (!sec5_mouseDown) {
-    if (cnt_sec5 < 6) cnt++;
+    if (cnt_sec5 < 6) cnt_sec5++;
     else {
-      cnt = 0;
+      cnt_sec5 = 0;
       index_sec5 = index_sec5 < 3 ? index_sec5 + 1 : 0;
       act_sec5_slide();
+      clearActive(sec5_pages);
+      sec5_pages[index_sec5].classList.add("active");
     }
   }
 }
@@ -322,6 +323,8 @@ function sec5_Up(next) {
   else if (sec5_direction < -10)
     index_sec5 = index_sec5 < 3 ? index_sec5 + 1 : 0;
   act_sec5_slide();
+  clearActive(sec5_pages);
+  sec5_pages[index_sec5].classList.add("active");
 }
 
 /**
