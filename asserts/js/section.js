@@ -321,6 +321,65 @@ function sec5_Up(next) {
   sec5_pages[index_sec5].classList.add("active");
 }
 
+/*Section6*/
+let sec6_slide = document.querySelector(".sec6_wrap ul");
+let sec6_lists = document.querySelectorAll(".sec6_wrap li");
+for (let list of sec6_lists) {
+  list.addEventListener("mouseenter", () => {
+    if (window.innerWidth > 768) {
+      clearActive(sec6_lists);
+      list.classList.add("active");
+    }
+  });
+}
+
+let sec6_prevPoint;
+let sec6_nextPoint;
+let index_sec6 = 0;
+
+sec6_slide.addEventListener("touchend", ({ changedTouches }) => {
+  sec6_Up(changedTouches[0].screenX);
+});
+
+sec6_slide.addEventListener("mousedown", ({ screenX }) => {
+  sec6_Down(screenX);
+});
+
+sec6_slide.addEventListener("mouseup", ({ screenX }) => {
+  sec6_Up(screenX);
+});
+
+function act_sec6_slide() {
+  clearActive(sec6_lists);
+  sec6_lists[index_sec6].classList.add("active");
+  if (window.innerWidth > 768) sec6_slide.style.transform = `translateX(0)`;
+  else
+    sec6_slide.style.transform = `translateX(${-(index_sec6 * 33.33) + 7.5}%)`;
+}
+
+/**
+ *
+ * @param {*} prev 터치 시작점 & 클릭 시작점
+ */
+function sec6_Down(prev) {
+  sec6_prevPoint = prev;
+}
+
+/**
+ *
+ * @param {*} next 터치 종료점 / 클릭 종료점
+ */
+function sec6_Up(next) {
+  sec6_nextPoint = next;
+  let sec6_direction = sec6_nextPoint - sec6_prevPoint;
+  if (sec6_direction > 10) index_sec6 = index_sec6 > 0 ? index_sec6 - 1 : 2;
+  else if (sec6_direction < -10)
+    index_sec6 = index_sec6 < 2 ? index_sec6 + 1 : 0;
+  act_sec6_slide();
+  clearActive(sec6_lists);
+  sec6_lists[index_sec6].classList.add("active");
+}
+
 /**
  *
  * @param {*} elements 자식 요소들의 active index를 반환할 부모 요소

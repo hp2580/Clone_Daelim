@@ -7,6 +7,10 @@ let interval;
 let interval_sec5;
 let isIntervalPlay = false;
 let isIntervalPlay_sec5 = false;
+let sizeUp_990 = false;
+let sizeUp_768 = false;
+let sizeDown_990 = false;
+let sizeDown_768 = false;
 
 window.onload = () => {
   addActive(products);
@@ -16,6 +20,7 @@ window.onload = () => {
   document.querySelector(".sec3_1").classList.add("active");
   document.querySelector(".sec3_p1").classList.add("active");
   document.querySelector(".sec5_pg1").classList.add("active");
+  document.querySelector(".sec6_1").classList.add("active");
   if (window.innerWidth <= 990) {
     interval = setInterval(sec5_cnt, 500);
     isIntervalPlay_sec5 = true;
@@ -33,6 +38,25 @@ window.onresize = () => {
     cnt_sec5 = 0;
     index_sec5 = 0;
     clearInterval(interval_sec5);
+  } else if (window.innerWidth > 768) {
+    product.style.transform = `translateX(0)`;
+    currentX = 0;
+    isIntervalPlay = false;
+    cnt = 0;
+    index = 0;
+    clearInterval(interval);
+    sec2_slide.style.transform = `translateX(0)`;
+    index_sec6 = 0;
+    act_sec6_slide();
+  }
+
+  if (window.innerWidth <= 768) {
+    if (!isIntervalPlay) {
+      isIntervalPlay = true;
+      interval = setInterval(sec2_cnt, 500);
+    }
+    index_sec6 = 0;
+    act_sec6_slide();
   } else if (window.innerWidth <= 990) {
     clearActive(sec3_navs);
     clearActive(sec3_lists);
@@ -44,19 +68,6 @@ window.onresize = () => {
     if (!isIntervalPlay_sec5) {
       isIntervalPlay_sec5 = true;
       interval_sec5 = setInterval(sec5_cnt, 500);
-    }
-  } else if (window.innerWidth > 768) {
-    product.style.transform = `translateX(0)`;
-    currentX = 0;
-    isIntervalPlay = false;
-    cnt = 0;
-    index = 0;
-    clearInterval(interval);
-    sec2_slide.style.transform = `translateX(0)`;
-  } else if (window.innerWidth <= 768) {
-    if (!isIntervalPlay) {
-      isIntervalPlay = true;
-      interval = setInterval(sec2_cnt, 500);
     }
   }
 };
@@ -81,6 +92,11 @@ window.onscroll = (e) => {
   for (let sec5_element of sec5_elements) {
     if (sec5_element.getBoundingClientRect().top < window.innerHeight * 0.9)
       sec5_element.classList.add("scroll");
+  }
+  let sec6_elements = document.querySelectorAll(".section6 > *");
+  for (let sec6_element of sec6_elements) {
+    if (sec6_element.getBoundingClientRect().top < window.innerHeight * 0.9)
+      sec6_element.classList.add("scroll");
   }
 };
 
