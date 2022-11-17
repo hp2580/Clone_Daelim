@@ -3,6 +3,22 @@ let paginations = document.querySelectorAll(".pagination li");
 let sec1_Pages = document.querySelectorAll(".sec1");
 let sec1_index = 0;
 
+sec1_wrap.addEventListener("touchstart", ({ touches }) => {
+  sec1_Down(touches[0].screenX);
+});
+
+sec1_wrap.addEventListener("touchend", ({ changedTouches }) => {
+  sec1_Up(changedTouches[0].screenX);
+});
+
+sec1_wrap.addEventListener("mousedown", ({ screenX }) => {
+  sec1_Down(screenX);
+});
+
+sec1_wrap.addEventListener("mouseup", ({ screenX }) => {
+  sec1_Up(screenX);
+});
+
 for (let pagination of paginations) {
   pagination.addEventListener("click", () => {
     let class_Pagination = pagination.classList[0];
@@ -26,35 +42,40 @@ for (let pagination of paginations) {
         sec1_index = 4;
         break;
     }
-    sec1(sec1_index);
+    act_sec1_slide();
   });
 }
 
 let sec1_prevPoint;
 let sec1_nextPoint;
-sec1_wrap.addEventListener("mousedown", (e) => {
-  sec1_prevPoint = e.screenX;
-});
 
-sec1_wrap.addEventListener("mouseup", (e) => {
-  sec1_nextPoint = e.screenX;
+/**
+ *
+ * @param {*} prev 터치 시작점 & 클릭 시작점
+ */
+function sec1_Down(prev) {
+  sec1_prevPoint = prev;
+}
+
+/**
+ *
+ * @param {*} next 터치 종료점 / 클릭 종료점
+ */
+function sec1_Up(next) {
+  sec1_nextPoint = next;
   let sec1_direction = sec1_nextPoint - sec1_prevPoint;
-  if (sec1_direction > 0) {
-    clearActive(paginations);
-    clearActive(sec1_Pages);
-    sec1_index = sec1_index > 0 ? sec1_index - 1 : 4;
-  } else if (sec1_direction < 0) {
-    clearActive(paginations);
-    clearActive(sec1_Pages);
+  if (sec1_direction > 10) sec1_index = sec1_index > 0 ? sec1_index - 1 : 4;
+  else if (sec1_direction < -10)
     sec1_index = sec1_index < 4 ? sec1_index + 1 : 0;
-  }
-  sec1(sec1_index);
-});
+  act_sec1_slide();
+}
 
-function sec1(index) {
-  paginations[index].classList.add("active");
-  sec1_Pages[index].classList.add("active");
-  sec1_wrap.style.transform = `translateX(-${20 * index}%)`;
+function act_sec1_slide() {
+  clearActive(sec1_Pages);
+  clearActive(paginations);
+  paginations[sec1_index].classList.add("active");
+  sec1_Pages[sec1_index].classList.add("active");
+  sec1_wrap.style.transform = `translateX(${-(sec1_index * 20)}%)`;
 }
 
 /*Section2*/
@@ -336,6 +357,10 @@ for (let list of sec6_lists) {
 let sec6_prevPoint;
 let sec6_nextPoint;
 let index_sec6 = 0;
+
+sec6_slide.addEventListener("touchstart", ({ touches }) => {
+  sec6_Down(touches[0].screenX);
+});
 
 sec6_slide.addEventListener("touchend", ({ changedTouches }) => {
   sec6_Up(changedTouches[0].screenX);

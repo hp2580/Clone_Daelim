@@ -7,9 +7,6 @@ let interval;
 let interval_sec5;
 let isIntervalPlay = false;
 let isIntervalPlay_sec5 = false;
-let sizeUp_990 = false;
-let sizeUp_768 = false;
-let sizeDown_990 = false;
 let sizeDown_768 = false;
 
 window.onload = () => {
@@ -46,8 +43,8 @@ window.onresize = () => {
     index = 0;
     clearInterval(interval);
     sec2_slide.style.transform = `translateX(0)`;
-    index_sec6 = 0;
-    act_sec6_slide();
+    sec6_slide.style.transform = `translateX(0)`;
+    sizeDown_768 = false;
   }
 
   if (window.innerWidth <= 768) {
@@ -55,8 +52,11 @@ window.onresize = () => {
       isIntervalPlay = true;
       interval = setInterval(sec2_cnt, 500);
     }
-    index_sec6 = 0;
-    act_sec6_slide();
+    if (!sizeDown_768) {
+      sizeDown_768 = true;
+      index_sec6 = 0;
+      act_sec6_slide();
+    }
   } else if (window.innerWidth <= 990) {
     clearActive(sec3_navs);
     clearActive(sec3_lists);
