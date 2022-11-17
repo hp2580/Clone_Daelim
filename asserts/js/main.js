@@ -153,6 +153,12 @@ document.querySelector(".btn_close").addEventListener("click", () => {
   document.body.classList.remove("hidden");
 });
 
+let family = document.querySelector(".family");
+let option = document.querySelector(".family .option");
+option.addEventListener("click", () => {
+  family.classList.toggle("active");
+});
+
 setInterval(() => {
   if (!mouseIn) {
     clearActive(depth2_list);
