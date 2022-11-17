@@ -1388,6 +1388,21 @@ header .logo img:nth-child(2) {
 }
 
 /*Section5*/
+.section5 {
+  overflow: hidden;
+}
+
+.section5 > * {
+  opacity: 0;
+  transform: translateY(300px);
+  transition: 0.5s;
+}
+
+.section5 > *.scroll {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .section5 .landmark {
   font-size: 9.5em;
   color: #eee;
@@ -1521,7 +1536,6 @@ header .logo img:nth-child(2) {
   flex: 1;
   display: block;
   position: relative;
-  pointer-events: none;
   user-select: none;
   -webkit-user-select: none;
   -webkit-user-drag: none;
@@ -1826,7 +1840,7 @@ header .logo img:nth-child(2) {
   }
 
   .section5 .landmark {
-    font-size: 7.5em;
+    font-size: calc(1em + 10vw);
   }
 
   .sec5_title {
@@ -1877,7 +1891,7 @@ header .logo img:nth-child(2) {
   .sec5_wrap {
     width: 100%;
     height: 500px;
-    background: none;
+    background: none !important;
     margin-top: 30px;
     padding: 0 0 100px;
     overflow: hidden;
@@ -1895,6 +1909,7 @@ header .logo img:nth-child(2) {
 
   .sec5_nav a {
     border-radius: 20px;
+    pointer-events: none;
   }
 
   .sec5_nav a:nth-child(1) {
@@ -2260,7 +2275,7 @@ header .logo img:nth-child(2) {
   }
 
   .sec5_wrap {
-    height: 600px;
+    max-height: 600px;
   }
 
   .sec5_nav {

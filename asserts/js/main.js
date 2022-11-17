@@ -77,6 +77,11 @@ window.onscroll = (e) => {
     if (sec4_element.getBoundingClientRect().top < window.innerHeight * 0.9)
       sec4_element.classList.add("scroll");
   }
+  let sec5_elements = document.querySelectorAll(".section5 > *");
+  for (let sec5_element of sec5_elements) {
+    if (sec5_element.getBoundingClientRect().top < window.innerHeight * 0.9)
+      sec5_element.classList.add("scroll");
+  }
 };
 
 document.querySelector(".goTop").addEventListener("click", () => {

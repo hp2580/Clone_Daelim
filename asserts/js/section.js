@@ -197,7 +197,9 @@ function act_sec3(index) {
 }
 
 /*Setion5*/
+let sec5_wrap = document.querySelector(".sec5_wrap");
 let sec5_navs = document.querySelectorAll(".sec5_nav a");
+
 for (let index = 0; index < sec5_navs.length; index++) {
   sec5_navs[index].addEventListener("mouseenter", () => {
     if (window.innerWidth > 990) {
@@ -209,29 +211,20 @@ for (let index = 0; index < sec5_navs.length; index++) {
 function act_sec5(index) {
   switch (index) {
     case 0:
-      document.querySelector(
-        ".sec5_wrap"
-      ).style.backgroundImage = `url(asserts/images/section5/sec5_bg1.png)`;
+      sec5_wrap.style.backgroundImage = `url(asserts/images/section5/sec5_bg1.png)`;
       break;
     case 1:
-      document.querySelector(
-        ".sec5_wrap"
-      ).style.backgroundImage = `url(asserts/images/section5/sec5_bg2.jpg)`;
+      sec5_wrap.style.backgroundImage = `url(asserts/images/section5/sec5_bg2.jpg)`;
       break;
     case 2:
-      document.querySelector(
-        ".sec5_wrap"
-      ).style.backgroundImage = `url(asserts/images/section5/sec5_bg3.jpg)`;
+      sec5_wrap.style.backgroundImage = `url(asserts/images/section5/sec5_bg3.jpg)`;
       break;
     default:
-      document.querySelector(
-        ".sec5_wrap"
-      ).style.backgroundImage = `url(asserts/images/section5/sec5_bg4.jpg)`;
+      sec5_wrap.style.backgroundImage = `url(asserts/images/section5/sec5_bg4.jpg)`;
       break;
   }
 }
 
-let sec5_lists = document.querySelectorAll(".sec5_nav a");
 let sec5_pages = document.querySelectorAll(".sec5_pagination button");
 let sec5_slide = document.querySelector(".sec5_nav");
 let sec5_prevPoint;
@@ -261,6 +254,7 @@ for (let button of sec5_pages) {
     let class_button = button.classList[0];
     clearActive(sec5_pages);
     button.classList.add("active");
+    cnt_sec5 = 0;
     switch (class_button) {
       case "sec5_pg1":
         index_sec5 = 0;
@@ -280,12 +274,12 @@ for (let button of sec5_pages) {
 }
 
 function act_sec5_slide() {
-  clearActive(sec5_lists);
+  clearActive(sec5_navs);
   if (window.innerWidth <= 580)
     sec5_slide.style.transform = `translateX(${-(index_sec5 * 25) + 5}%)`;
   else if (window.innerWidth <= 990)
     sec5_slide.style.transform = `translateX(${-(index_sec5 * 25)}%)`;
-  else sec5_slide.style.transform = `translateX(0)`;
+  else sec5_slide.style.transform = `translate(0, -50%)`;
 }
 
 function sec5_cnt() {
