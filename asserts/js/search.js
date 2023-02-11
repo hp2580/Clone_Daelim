@@ -73,13 +73,27 @@ product.addEventListener("mousedown", (e) => {
 
 product.addEventListener("mouseup", (e) => {
   if (window.innerWidth <= 768) {
-    if (canMove) {
-      nextPoint = e.screenX;
-      moveX = nextPoint - prevPoint;
-      currentX += moveX;
-      if (currentX > 0) currentX = 0;
-      else if (currentX < -3660) currentX = -3660;
-      product.style.transform = `translateX(${currentX}px)`;
-    }
+    productMove(e.screenX);
   }
 });
+
+product.addEventListener("touchstart", ({ touches }) => {
+  if (window.innerWidth <= 768) prevPoint = touches[0].screenX;
+});
+
+product.addEventListener("touchend", ({ changedTouches }) => {
+  if (window.innerWidth <= 768) {
+    productMove(changedTouches[0].screenX);
+  }
+});
+
+function productMove(x) {
+  if (canMove) {
+    nextPoint = x;
+    moveX = nextPoint - prevPoint;
+    currentX += moveX;
+    if (currentX > 0) currentX = 0;
+    else if (currentX < -3660) currentX = -3660;
+    product.style.transform = `translateX(${currentX}px)`;
+  }
+}
