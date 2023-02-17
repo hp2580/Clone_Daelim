@@ -1,24 +1,27 @@
-let search = document.querySelector(".search");
-let searchWrap = document.querySelector(".search_wrap");
-let canMove = true;
+const search = document.querySelector(".search");
+const searchWrap = document.querySelector(".search_wrap");
 search.addEventListener("click", () => {
   search.classList.add("hide");
   searchWrap.classList.add("active");
-  canMove = true;
+  if (window.innerWidth < 768) {
+    document.body.style.overflow = "hidden";
+  }
 });
 
-let closeSearch = document.querySelector(".close_search");
+const closeSearch = document.querySelector(".close_search");
 closeSearch.addEventListener("click", () => {
   search.classList.remove("hide");
   searchWrap.classList.remove("active");
   addActive(document.querySelectorAll(".product li"));
+  if (window.innerWidth < 768) {
+    document.body.style.overflow = ``;
+  }
 });
 
 let titles = document.querySelectorAll(".name a");
 for (let title of titles) {
   title.addEventListener("click", (e) => {
     e.preventDefault();
-    canMove = false;
     product.style.transform = `translateX(0)`;
     let productClass = title.classList[0];
     switch (productClass) {

@@ -86,7 +86,7 @@ body {
   border-radius: 15px;
   background: var(--blue);
   z-index: 200;
-  transition: 0.5s;
+  transition: width 0.5s;
 }
 
 .search.hide {

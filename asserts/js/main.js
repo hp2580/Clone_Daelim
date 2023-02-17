@@ -1,7 +1,7 @@
-let depth1_list = document.querySelectorAll(".depth1 a");
-let depth2 = document.querySelector(".depth2");
-let depth2_list = document.querySelectorAll(".depth2 .sub");
-let products = document.querySelectorAll(".product li");
+const depth1_list = document.querySelectorAll(".depth1 a");
+const depth2 = document.querySelector(".depth2");
+const depth2_list = document.querySelectorAll(".depth2 .sub");
+const products = document.querySelectorAll(".product li");
 let mouseIn = false;
 let interval;
 let interval_sec5;
@@ -153,8 +153,8 @@ document.querySelector(".btn_close").addEventListener("click", () => {
   document.body.classList.remove("hidden");
 });
 
-let family = document.querySelector(".family");
-let option = document.querySelector(".family .option");
+const family = document.querySelector(".family");
+const option = document.querySelector(".family .option");
 option.addEventListener("click", () => {
   family.classList.toggle("active");
 });
