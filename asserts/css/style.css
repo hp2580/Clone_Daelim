@@ -2352,6 +2352,15 @@ footer {
     opacity: 1;
   }
 
+  .search_wrap .container {
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+  .search_wrap .container::-webkit-scrollbar {
+    display: none;
+  }
+
   .search_wrap section {
     margin-bottom: 20px;
   }
