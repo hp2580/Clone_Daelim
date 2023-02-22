@@ -70,6 +70,7 @@ let prevPoint;
 let nextPoint;
 let currentX = 0;
 let moveX;
+
 product.addEventListener("mousedown", (e) => {
   if (window.innerWidth <= 768) prevPoint = e.screenX;
 });
@@ -91,12 +92,10 @@ product.addEventListener("touchend", ({ changedTouches }) => {
 });
 
 function productMove(x) {
-  if (canMove) {
-    nextPoint = x;
-    moveX = nextPoint - prevPoint;
-    currentX += moveX;
-    if (currentX > 0) currentX = 0;
-    else if (currentX < -3660) currentX = -3660;
-    product.style.transform = `translateX(${currentX}px)`;
-  }
+  nextPoint = x;
+  moveX = nextPoint - prevPoint;
+  currentX += moveX;
+  if (currentX > 0) currentX = 0;
+  else if (currentX < -3660) currentX = -3660;
+  product.style.transform = `translateX(${currentX}px)`;
 }
